@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { getProductById, products, formatPrice } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { Heart, Minus, Plus, ArrowLeft, Truck, Store, CreditCard } from "lucide-react";
+import { toast } from "sonner";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -12,6 +13,7 @@ const ProductDetail = () => {
   const { addItem } = useCart();
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
   if (!product) {
     return (
@@ -29,8 +31,27 @@ const ProductDetail = () => {
   }
 
   const handleAddToCart = () => {
-    if (!selectedSize) return;
+    if (!selectedSize) {
+      toast.error("Please select a size first");
+      return;
+    }
+
     addItem(product, selectedSize, quantity);
+    toast.success(`${product.name} added to your bag`);
+  };
+
+  const handleWishlistToggle = () => {
+    setIsWishlisted((prev) => {
+      const next = !prev;
+
+      toast.success(
+        next
+          ? `${product.name} added to favourites`
+          : `${product.name} removed from favourites`
+      );
+
+      return next;
+    });
   };
 
   // Get related products (same category, different id)
@@ -158,8 +179,14 @@ const ProductDetail = () => {
                 >
                   ADD TO BAG
                 </button>
-                <button className="w-12 h-12 border border-border flex items-center justify-center hover:bg-muted transition-colors">
-                  <Heart size={18} />
+                <button
+                  type="button"
+                  onClick={handleWishlistToggle}
+                  aria-pressed={isWishlisted}
+                  aria-label={isWishlisted ? "Remove from favourites" : "Add to favourites"}
+                  className="w-12 h-12 border border-border flex items-center justify-center hover:bg-muted transition-colors"
+                >
+                  <Heart size={18} className={isWishlisted ? "fill-current text-foreground" : "text-foreground"} />
                 </button>
               </div>
 
