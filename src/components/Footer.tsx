@@ -1,4 +1,5 @@
 import { Phone, MapPin, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -19,10 +20,16 @@ const Footer = () => {
           <div>
             <p className="text-xs tracking-[0.2em] font-sans mb-4 text-primary-foreground/50">QUICK LINKS</p>
             <div className="space-y-2">
-              {["Home", "Shop", "Sale", "Lookbook", "About Us"].map((link) => (
-                <a key={link} href="#" className="block font-sans text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                  {link}
-                </a>
+              {[
+                { label: "Home", to: "/" },
+                { label: "Shop", to: "/shop" },
+                { label: "Lookbook", to: "/lookbook" },
+                { label: "About Us", to: "/about" },
+                { label: "Contact", to: "/contact" },
+              ].map((link) => (
+                <Link key={link.label} to={link.to} className="block font-sans text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  {link.label}
+                </Link>
               ))}
             </div>
           </div>
