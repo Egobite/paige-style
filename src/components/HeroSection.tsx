@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -27,18 +28,18 @@ const HeroSection = () => {
           Discover curated fashion pieces crafted for the modern spirit, in the heart of Abuja.
         </p>
         <div className="flex flex-col sm:flex-row gap-3">
-          <a
-            href="#"
+          <Link
+            to="/shop"
             className="inline-flex items-center justify-center gap-2 bg-gold px-8 py-4 text-primary-foreground text-xs tracking-[0.2em] font-sans font-medium hover:bg-gold-light transition-colors"
           >
             SHOP NOW <ArrowRight size={14} />
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/about"
             className="inline-flex items-center justify-center gap-2 border border-primary-foreground/50 px-8 py-4 text-primary-foreground text-xs tracking-[0.2em] font-sans font-medium hover:bg-primary-foreground/10 transition-colors"
           >
             VISIT STORE
-          </a>
+          </Link>
         </div>
       </div>
     </section>

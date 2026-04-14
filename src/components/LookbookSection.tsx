@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const lookbookImages = [
   "https://media.base44.com/images/public/user_69d5d24c3c3774f77a640c8b/0b36c45ec_paigeclothing-20260413-0001.jpg",
   "https://media.base44.com/images/public/user_69d5d24c3c3774f77a640c8b/dff01c40c_paigeclothing-20260413-0006.jpg",
@@ -19,15 +21,15 @@ const LookbookSection = () => {
               The <em>Edit</em>
             </h2>
           </div>
-          <a href="#" className="text-foreground text-xs tracking-[0.2em] font-sans hover:opacity-70 transition-opacity">
+          <Link to="/lookbook" className="text-foreground text-xs tracking-[0.2em] font-sans hover:opacity-70 transition-opacity">
             VIEW ALL →
-          </a>
+          </Link>
         </div>
 
         {/* Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           {lookbookImages.map((img, i) => (
-            <a href="#" key={i} className="group relative overflow-hidden">
+            <Link to="/lookbook" key={i} className="group relative overflow-hidden">
               <img
                 src={img}
                 alt={`Lookbook ${i + 1}`}
@@ -38,7 +40,7 @@ const LookbookSection = () => {
                   SHOP THE LOOK
                 </span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
